@@ -1,0 +1,232 @@
+
+{% extends "greeting/base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+{% block head %}
+    <script type="text/javascript" src="{% static "js/hammer.min.js" %}"></script>
+    <style type="text/css">
+			body,
+			html {
+				height: 100%;
+				overflow: auto;
+                font-size: 62.5%;
+			}
+    ul,li{
+        padding:0;
+        margin:0;
+    }
+		</style>
+    	<script>
+			var current = 1;
+			var id = "{{ rid }}";
+            var type="{{ type }}";
+			$(function() {
+				//贺卡制作页面
+				if (id!="") {
+					//创建一个新的hammer对象并且在初始化时指定要处理的dom元素
+					var hammertime = new Hammer(document.getElementById("card_frame"));
+					//添加左划事件
+					hammertime.on("swipeleft", function(e) {
+						swipeleft()
+					});
+					//添加右划事件
+					hammertime.on("swiperight", function(e) {
+						swiperight()
+					});
+					$("#make").click(function() {
+                        var jsonObject={};
+                        jsonObject.rid=id;
+                        jsonObject.to=$(".to").val();
+                        jsonObject.from=$(".from").val();
+                        jsonObject.content=$(".content").val();
+                        jsonObject.type=current;
+                        $.ajax({
+                        url:'/greeting/savegreeting/',
+                        type:'post',
+                        data:JSON.stringify(jsonObject),
+
+                        error:function(){
+                           alert('error');
+                        },
+                        success:function(data){
+                          //设置发信人，祝福语，收信人不可编辑#}
+								readOnly();
+								//隐藏左右箭头 ,生成贺卡按钮
+								$(".arrow").hide();
+								$("#make").hide();
+								//显示分享和快抢按钮
+								$(".detail_btn").show();
+								$("#share").show();
+								$("#fantuan_href").show();
+								$("#make_too").hide();
+                        }
+                        });
+						//$("form").trigger("submit");
+					});
+				}
+				//贺卡详情页面
+				else if (id=="") {
+					//设置发信人，祝福语，收信人不可编辑,并为其赋值
+					readOnly();
+                    $(".to").val("{{ to }}");
+                    $(".content").val("{{ content }}");
+                    $(".from").val("{{ from }}");
+                    //显示分享和快抢按钮
+                    $(".detail_btn").show();
+                    $("#share").hide();
+                    $("#fantuan_href").show();
+                    $("#make_too").show();
+{#                    var currentCard="";#}
+{#                    switch (type){#}
+{#                        case "1":currentCard="img/guimi_kuang.png";#}
+{#                        case "2":currentCard="img/xiongdi_kuang.png";#}
+{#                        case "3":currentCard="img/qinren_kuang.png";#}
+{#                    }#}
+{#                    $("#card_frame_detail").attr("src","{% get_static_prefix %}"+currentCard);#}
+
+				}
+
+                //监听“发给小伙伴”按钮
+					$("#share").click(function() {
+						$(".mask_layer").show();
+					});
+					//监听“分享提示层”
+					$(".mask_layer").click(function() {
+						$(this).hide();
+					});
+					//监听“快抢八千分期免息”
+					$("#fantuan_href").click(function() {
+						window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9f10cbb35d3e10ca&redirect_uri=https%3A%2F%2Fwap.cgbchina.com.cn%3A443%2FwxAuthorizeQuery.do%3FgoodsCode%3D100000000000034%26srcChannel%3DWS&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+					});
+                    	//监听“快抢八千分期免息”
+					$("#make_too").click(function() {
+						window.location.href ="/greeting";
+					});
+			});
+			//手指左划
+			function swipeleft() {
+				if (current <= 2) {
+					current++;
+					$("#card_frame" + current).fadeIn().siblings("div[id^='card_frame']").hide();
+				}
+			}
+			//手指右划
+			function swiperight() {
+				if (current >= 2) {
+					current--;
+                    $("#card_frame" + current).fadeIn().siblings("div[id^='card_frame']").hide();
+                }
+			}
+			//设置发信人，祝福语，收信人不可编辑
+			function readOnly() {
+				$(".to").attr("readonly", "true");
+				$(".content").attr("readonly", "true");
+				$(".from").attr("readonly", "true");
+			}
+		</script>
+
+{% endblock %}
+
+{% block content %}
+{#    rid: {{ rid }} </br>#}
+    <form method="post" id="form1">
+			<div class="container">
+				<!--背景图使用fixed方式，防止弹出输入框后，滚动滚动条出现白屏-->
+				<img class="bgimg" src="{% static "img/make_bg.jpg" %}" />
+				<!--贺卡主体-->
+				<div id="card_frame" class="card_frame">
+					<!--3个贺卡框架-->
+                    {% if rid %}
+                        <!--3个贺卡框架-->
+                        <div id="card_frame1">
+                            <img class="current_frame" src="{% static "img/guimi_kuang.png" %}"/>
+                            <img class="cirrus" src="{% static "img/cirrus.png" %}"  />
+                            <img class="butterfly butterfly1" src="{% static "img/butterfly_01.png" %}"/>
+                            <img class="butterfly butterfly2" src="{% static "img/butterfly_02.png" %}" />
+                        </div>
+                        <div id="card_frame2" class="hide">
+                            <img class="current_frame" src="{% static "img/xiongdi_kuang.png" %}"  />
+                            <!--致兄弟动画组-->
+                            <img class="note note1" src="{% static "img/note_01.png" %}"/>
+                            <img class="note note2" src="{% static "img/note_02.png" %}" />
+                            <img class="note note3" src="{% static "img/note_03.png" %}" />
+                            <img class="note note4" src="{% static "img/note_04.png" %}" />
+                        </div>
+                        <div id="card_frame3" class="hide">
+                            <img  class="current_frame" src="{% static "img/qinren_kuang.png" %}"  />
+                            <!--致恋人动画组-->
+                            <img class="plane plane1" src="{% static "img/plane_01.png" %}" />
+                            <img class="plane plane2" src="{% static "img/plane_02.png" %}" />
+                            <img class="plane plane3" src="{% static "img/plane_03.png" %}" />
+                        </div>
+                    {% else %}
+                        {% if type == 1 %}
+                            <div id="card_frame1">
+                                <img class="current_frame" src="{% static "img/guimi_kuang.png" %}"/>
+                                <img class="cirrus" src="{% static "img/cirrus.png" %}"  />
+                                <img class="butterfly butterfly1" src="{% static "img/butterfly_01.png" %}"/>
+                                <img class="butterfly butterfly2" src="{% static "img/butterfly_02.png" %}" />
+                            </div>
+                        {% elif type == 2 %}
+                            <div id="card_frame2">
+                                <img class="current_frame" src="{% static "img/xiongdi_kuang.png" %}"  />
+                                <!--致兄弟动画组-->
+                                <img class="note note1" src="{% static "img/note_01.png" %}"/>
+                                <img class="note note2" src="{% static "img/note_02.png" %}" />
+                                <img class="note note3" src="{% static "img/note_03.png" %}" />
+                                <img class="note note4" src="{% static "img/note_04.png" %}" />
+                            </div>
+                        {% else %}
+                            <div id="card_frame3">
+                                <img  class="current_frame" src="{% static "img/qinren_kuang.png" %}"  />
+                                <!--致恋人动画组-->
+                                <img class="plane plane1" src="{% static "img/plane_01.png" %}" />
+                                <img class="plane plane2" src="{% static "img/plane_02.png" %}" />
+                                <img class="plane plane3" src="{% static "img/plane_03.png" %}" />
+                            </div>
+                        {% endif %}
+{#                        <img id="card_frame_detail" class="current_frame" src=""  />#}
+                    {% endif %}
+
+					<!--祝福语内容-->
+					<div class="greetings">
+						<input class="input to" name="to" value="To " maxlength="20" />
+						<div class="contentDIV">
+							<!--textarea下划线-->
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+							<textarea rows="5" cols="15" class="content" name="content" maxlength="60"></textarea>
+						</div>
+						<input class="input from" name="from" value="From " maxlength="20" />
+					</div>
+				</div>
+                {% if rid %}
+                    <!--制作贺卡按钮及提示箭头-->
+                    <img id="make" class="make" src="{% static "img/make_btn.png" %}" />
+                    <img onclick="swipeleft()" class="arrow leftarrow" src="{% static "img/left_arrow.png" %}"  />
+                    <img onclick="swiperight()" class="arrow rightarrow" src="{% static "img/right_arrow.png" %}"  />
+                {% endif %}
+                    <!--详情页面分享按钮-->
+                    <div class="detail_btn hide">
+                        <img id="share" class="share hide" src="{% static "img/share_btn.png" %}" />
+                        <img id="make_too" class="make_too hide" src="{% static "img/make_too_btn.png" %}" />
+                        <img id="fantuan_href" class="fantuan_href hide" src="{% static "img/fantuan_btn.png" %}"/>
+                    </div>
+
+
+			</div>
+		</form>
+
+		<div class="mask_layer hide">
+			<img class="width100_heightAuto" src="{% static "img/share_tip.png" %}" />
+		</div>
+		<audio autoplay="" loop="">
+			<source src="{% static "img/bg_music.mp3" %}">
+		</audio>
+{% endblock %}

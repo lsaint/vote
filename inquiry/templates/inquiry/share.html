@@ -1,0 +1,128 @@
+
+{% extends "inquiry/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block head %}
+
+    <script>
+            var share="{{ share }}";
+        // 加载图片,初始化游戏
+        value = {
+                level1 : '20%',
+                level2 : '30%',
+                level3 : '40%',
+                level4 : '50%',
+                img1 : 'image/end_1.png',
+                img2 : 'image/end_2.png',
+                img3 : 'image/end_3.png',
+                img4 : 'image/end_4.png',
+                mental1 : 'image/1_star.png',
+                mental2 : 'image/2_star.png',
+                mental3 : 'image/3_star.png',
+                mental4 : 'image/4_star.png',
+                txt1 : '只能说，出来混，不能太温柔！',
+                txt2 : '找个点钱师傅给你培训一下！',
+                txt3 : '讨厌，这么厉害，人家都被你戳疼了啦！',
+                txt4 : '亮瞎剁手党，借手指来膜拜 一下！',
+                name1 : '温柔手',
+                name2 : '无影手',
+                name3 : '金手指',
+                name4 : '一指禅'
+                };
+        $(function(){
+            if(share=="1"){
+                 $(".link_text").show();
+
+                 $("#button_01_03").attr("src","image/button_01.png");
+                 $("#sbtn_1").attr("href","javascript:void(0)");
+                 $("#sbtn_1").click(function(){
+                     $(".bg_black").show();
+                 });
+                $(".bg_black").click(function(){
+                    $(this).hide();
+                });
+             }
+
+            var score={{ score }};
+            if(score<=25){
+            $('.number').html(score);
+            $('.per_num').html(value.level1);
+            $('.end_text_2').html(value.txt1);
+            $('.end_title_2').html(value.name1);
+            $('.end').attr('src',value.img1);
+            $('.prize').attr('src',value.mental1);
+            }else if(score<=35){
+                $('.number').html(score);
+                $('.per_num').html(value.level2);
+                $('.end_text_2').html(value.txt2);
+                $('.end_title_2').html(value.name2);
+                $('.end').attr('src',value.img2);
+                $('.prize').attr('src',value.mental2);
+            }else if(score<=40){
+                $('.number').html(score);
+                $('.per_num').html(value.level3);
+                $('.end_text_2').html(value.txt3);
+                $('.end_title_2').html(value.name3);
+                $('.end').attr('src',value.img3);
+                $('.prize').attr('src',value.mental3);
+            }else{
+                $('.number').html(score);
+                $('.per_num').html(value.level4);
+                $('.end_text_2').html(value.txt4);
+                $('.end_title_2').html(value.name4);
+                $('.end').attr('src',value.img4);
+                $('.prize').attr('src',value.mental4);
+            };
+        });
+
+
+    </script>
+{% endblock %}
+
+{% block content %}
+   <div class="music_icon"></div>
+	<audio id="music" loop="loop">
+		<source src="image/bg_music.mp3" type="audio/mpeg">
+	</audio>
+	<div id="all_3">
+		<img src="image/1_star.png" class="prize">
+		<p class="end_text_1">我5秒戳了<span class="number"></span>下，查出<span class="per_num"></span>价格水分</p>
+		<p class="end_text_2">只能说，出来混，不能太温柔！</p>
+		<div class="end_title">
+			<p class="end_title_1"><span>广发卡</span>价格调查局颁发称号</p>
+			<p class="end_title_2">温柔手</p>
+		</div>
+		<div class="share_btn">
+			<a id="sbtn_1" href="http://gfinquiry.huocc.com/inquiry/" class="sbtn_1"><img id="button_01_03" src="image/button_03.png"></a>
+			<a href="http://gfanniversary.huocc.com" class="sbtn_2"><img src="image/button_04.png"></a>
+		</div>
+		<div class="share_text">
+			<img src="image/share_text3.png">
+			<img src="image/share_text2.png">
+		</div>
+		<div class="link_text"><a href="http://m.cgbfriday.com/card-step1.html"><img src="image/wenzi.png"></a></div>
+		<div class="bg_black"><img src="image/share_tip.png"></div>
+	</div>
+	<script>
+		$(document).ready(function(){
+			var a=0;
+			var b=document.getElementById('music');
+			b.play();
+			$(".music_icon").click(function(){
+				if (a%2==0) {
+					$(this).addClass("music_off_icon");
+					b.pause();
+				}else{
+					$(this).removeClass("music_off_icon");
+					b.play();
+				}
+				a++;
+			});
+		});
+	</script>
+{% endblock %}

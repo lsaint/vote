@@ -1,0 +1,546 @@
+/*封面样式*/
+
+
+/*贺卡容器*/
+
+.container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	/*-webkit-perspective: 800px;*/
+	margin: 0 auto;
+}
+
+
+/*雪花*/
+
+.snowbg {
+	width: 100%;
+	height: 100%;
+	clear: both;
+	margin: 0 auto;
+	position: absolute;
+	overflow: hidden;
+}
+
+.snow {
+	position: absolute;
+	top: 0;
+	color: #fff;
+	z-index: 3;
+}
+
+.title {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	z-index: 2;
+}
+
+.bg {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.relative_center {
+	position: relative;
+	margin: 0 auto;
+	display: block;
+}
+
+.start_fantuan {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	bottom: 11.94029850746269%;
+	z-index: 4;
+}
+
+.start {
+	width: 57.46666666666667%;
+	height: auto;
+}
+
+.fantuan {
+	position: relative;
+	width: 53.6%;
+	height: auto;
+	bottom: 20.94029850746269%;
+}
+
+.fantuan img {
+	height: auto;
+	position: absolute;
+	bottom: 0;
+}
+
+.fantuan img:nth-of-type(1) {
+	width: 24.37810945273632%;
+	left: 0;
+	-webkit-animation: fantuan_01_jump 3s ease-in-out infinite normal;
+}
+
+.fantuan img:nth-of-type(2) {
+	width: 20.8955223880597%;
+	left: 24.37810945273632%;
+	-webkit-animation: fantuan_02_jump 2s ease-in-out infinite normal;
+}
+
+.fantuan img:nth-of-type(3) {
+	width: 26.86567164179104%;
+	left: 45.27363184079602%;
+	-webkit-animation: fantuan_03_jump 3s ease-in-out infinite normal;
+}
+
+.fantuan img:nth-of-type(4) {
+	width: 15.4228855721393%;
+	left: 72.13930348258706%;
+	-webkit-animation: fantuan_04_jump 2s ease-in-out infinite normal;
+}
+
+.fantuan img:nth-of-type(5) {
+	width: 12.43781094527363%;
+	left: 87.56218905472637%;
+	-webkit-animation: fantuan_05_jump 4s ease-in-out infinite normal;
+}
+
+@-webkit-keyframes fantuan_01_jump {
+	0% {
+		bottom: 0px;
+	}
+	50% {
+		bottom: 60px;
+	}
+	100% {
+		bottom: 0px;
+	}
+}
+
+@-webkit-keyframes fantuan_02_jump {
+	0% {
+		bottom: 0px;
+	}
+	50% {
+		bottom: 25px;
+	}
+	100% {
+		bottom: 0px;
+	}
+}
+
+@-webkit-keyframes fantuan_03_jump {
+	0% {
+		bottom: 0px;
+	}
+	50% {
+		bottom: 20px;
+	}
+	100% {
+		bottom: 0px;
+	}
+}
+
+@-webkit-keyframes fantuan_04_jump {
+	0% {
+		bottom: 0px;
+	}
+	50% {
+		bottom: 30px;
+	}
+	100% {
+		bottom: 0px;
+	}
+}
+
+@-webkit-keyframes fantuan_05_jump {
+	0% {
+		bottom: 0px;
+	}
+	50% {
+		bottom: 50px;
+	}
+	100% {
+		bottom: 0px;
+	}
+}
+
+
+/*贺卡页面样式*/
+
+.relative_center {
+	position: relative;
+	margin: 0 auto;
+	display: block;
+}
+
+
+/*贺卡容器*/
+
+form {
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	-webkit-perspective: 800px;
+	margin: 0 auto;
+	background-size: cover;
+}
+
+
+.card_frame {
+	width: 100%;
+	height: auto;
+	top: 0;
+	position: relative;
+}
+
+.current_frame {
+	width: 100%;
+	height: auto;
+}
+
+.make{
+	position: relative;
+	display: block;
+	width: 57.46666666666667%;
+	margin: 0 auto;
+}
+.hide {
+	display: none;
+}
+
+.greetings {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	width: 100%;
+	height: 100%;
+}
+
+.input {
+	border: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+	border-radius: 0;
+	line-height: 2rem;
+	display: block;
+	background: transparent;
+	font-size: 1.8rem;
+	color: #FFFFFF;
+	-webkit-appearance: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	/* 点击高亮的颜色*/
+}
+
+.to {
+	position: absolute;
+	/*top: 10.4rem;*/
+	top: 20.27906976744186%;
+	left: 14.93333333333333%;
+	width: 29.06666666666667%;
+}
+
+.from {
+	position: absolute;
+	/*bottom: 10.4rem;*/
+	bottom: 21.06976744186047%;
+	right: 14.93333333333333%;
+	width: 29.06666666666667%;
+}
+
+.contentDIV {
+	width: 70.13333333333333%;
+	left: 14.93333333333333%;
+	height: auto;
+	position: relative;
+	/*top: 31.69767441860465%;*/
+	top: 34.41860465116279%;
+	z-index: 4;
+}
+
+.content {
+	line-height: 3.3rem;
+	overflow: hidden;
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 0;
+	font-size: 1.6rem;
+	color: #FFFFFF;
+	background: transparent;
+	border: none;
+}
+
+ul {
+	width: 100%;
+	height: auto;
+	display: block;
+	position: relative;
+}
+
+ul li {
+	width: 100%;
+	line-height: 3.2rem;
+	height: 3.2rem;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.bgimg {
+	position: fixed;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+}
+
+*:focus {
+	outline: none;
+	background: transparent;
+}
+
+.arrow {
+	display: block;
+	width: 5.33333333333333%;
+	height: auto;
+	position: fixed;
+	top: 34.38640132669983%;
+	-webkit-animation: twinkling 1s infinite alternate;
+}
+
+.leftarrow {
+	left: 1%;
+}
+
+.rightarrow {
+	right: 1%;
+}
+
+@-webkit-keyframes twinkling {
+	/*透明度由0到1*/
+	0% {
+		opacity: 0;
+		/*透明度为0*/
+	}
+	100% {
+		opacity: 1;
+		/*透明度为1*/
+	}
+}
+.detail_btn{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+.share,.make_too{
+	width:44.13333333333333%;
+	margin-left: 4.4%;
+}
+.fantuan_href{
+	width:44.13333333333333%;
+	margin-right: 4.4%;
+}
+.mask_layer{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.75);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+}
+.width100_heightAuto{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.plane,
+.note,
+.butterfly {
+	display: block;
+	position: absolute;
+}
+
+@-webkit-keyframes plane1_shake {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	40% {
+		-webkit-transform: rotate(7deg);
+	}
+	80% {
+		-webkit-transform: rotate(-7deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+	}
+}
+
+.plane1 {
+	width: 14.4%;
+	top: 72.2552783109405%;
+	left: 8.13333333333333%;
+	-webkit-animation: plane1_shake 4s linear 0s infinite normal;
+}
+
+@-webkit-keyframes plane2_shake {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	40% {
+		-webkit-transform: rotate(4deg);
+	}
+	80% {
+		-webkit-transform: rotate(-4deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+	}
+}
+
+.plane2 {
+	width: 23.6%;
+	top: 69.34494195688226%;
+	left: 25.6%;
+	-webkit-animation: plane2_shake 2s linear 0s infinite normal;
+}
+
+@-webkit-keyframes plane3_shake {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	40% {
+		-webkit-transform: rotate(3deg);
+	}
+	80% {
+		-webkit-transform: rotate(-3deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+	}
+}
+
+.plane3 {
+	width: 34.8%;
+	top: 79.88059701492537%;
+	left: -4.53333333333333%;
+	-webkit-animation: plane3_shake 3s linear 0s infinite normal;
+}
+
+.note1 {
+	width: 4.8%;
+	bottom: 25.86046511627907%;
+	left: 33.46666666666667%;
+	-webkit-animation: note_shake 2s linear 0s infinite normal;
+}
+
+.note2 {
+	width: 5.6%;
+	bottom: 18.69767441860465%;
+	left: 2%;
+	-webkit-animation: note_shake 5s linear 0s infinite normal;
+}
+
+.note3 {
+	width: 5.6%;
+	bottom: 14.69767441860465%;
+	right: 34.53333333333333%;
+	-webkit-animation: note_shake 3s linear 0s infinite normal;
+}
+
+.note4 {
+	width: 4.66666666666667%;
+	bottom: 2.97674418604651%;
+	left: 12.26666666666667%;
+	-webkit-animation: note_shake 1s linear 0s infinite normal;
+}
+
+@-webkit-keyframes note_shake {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	40% {
+		-webkit-transform: rotate(20deg);
+	}
+	80% {
+		-webkit-transform: rotate(-20deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+	}
+}
+
+.cirrus {
+	display: block;
+	position: absolute;
+	width: 71.46666666666667%;
+	bottom: 0px;
+	left: 14.66666666666667%;
+	-webkit-animation: cirrus_shake 4s linear 0s infinite normal;
+}
+
+@-webkit-keyframes cirrus_shake {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	40% {
+		-webkit-transform: rotate(4deg);
+	}
+	60% {
+		-webkit-transform: rotate(0deg);
+	}
+	80% {
+		-webkit-transform: rotate(-4deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+	}
+}
+
+.butterfly1 {
+	width: 12.13333333333333%;
+	top: 13.2093023255814%;
+	right: 39.73333333333333%;
+	-webkit-animation: butterfly_fly1 3s linear 0s infinite normal;
+}
+
+.butterfly2 {
+	width: 17.6%;
+	top: 15.62790697674419%;
+	right: 18.4%;
+	-webkit-animation: butterfly_fly2 3.5s linear 0s infinite normal;
+}
+
+@-webkit-keyframes butterfly_fly1 {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	40% {
+		-webkit-transform: rotate(6deg);
+	}
+	80% {
+		-webkit-transform: rotate(-6deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+	}
+}
+
+@-webkit-keyframes butterfly_fly2 {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	40% {
+		-webkit-transform: rotate(-6deg);
+	}
+	80% {
+		-webkit-transform: rotate(6deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+	}
+}

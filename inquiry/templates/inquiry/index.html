@@ -1,0 +1,64 @@
+
+{% extends "inquiry/base.html" %}
+
+{% load staticfiles %}
+
+{% block head %}
+{#	<link rel="prefetch" href="{%url 'share'%}"/>#}
+	<link rel="prefetch" href="js/eva.js"/>
+{% endblock %}
+
+{% block content %}
+    <div class="music_icon"></div>
+	<audio id="music" loop="loop">
+		<source src="image/bg_music.mp3" type="audio/mpeg">
+	</audio>
+	<div id="all">
+		<div class="btn">
+			<div class="btn_1"><a href="javascript:void(0)"><img src="image/icon_01.png" alt=""></a></div>
+			<div class="btn_2"><a href="http://gfinquiry.huocc.com/inquiry/move/"><img src="image/icon_02.png" alt=""></a></div>
+		</div>
+		<div class="popup_bg"></div>
+		<div class="popup_box">
+			<h1>必备技能get√</h1>
+			<p>1.选择一款星品，一探价格水分秘密</p>
+			<p>2.通过戳一戳及刷一刷，挤掉价格水分</p>
+			<p>3.挤出越多水分，荣誉越高，还可亲临折扣现场抢购！</p>
+			<p class="last_text">小手抖起来~</p>
+		</div>
+		<img src="image/close.png" class="close_icon">
+	</div>
+	<script>
+		$(document).ready(function(){
+			var a=0;
+			var b=document.getElementById('music');
+			b.play();
+			$(".music_icon").click(function(){
+				if (a%2==0) {
+					$(this).addClass("music_off_icon");
+					b.pause();
+				}else{
+					$(this).removeClass("music_off_icon");
+					b.play();
+				}
+				a++;
+			});
+			$(".btn_1>a").click(function(){
+				$(".popup_bg").fadeIn();
+				$(".popup_box").fadeIn();
+				$(".close_icon").fadeIn();
+			});
+			function close(){
+				$(".popup_bg").fadeOut();
+				$(".popup_box").fadeOut();
+				$(".close_icon").fadeOut();
+			};
+			$(".popup_bg").click(function(){
+				close();
+			});
+			$(".close_icon").click(function(){
+				close();
+			})
+		});
+	</script>
+{% endblock %}

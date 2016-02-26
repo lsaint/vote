@@ -1,0 +1,65 @@
+
+{% extends "greeting/base.html" %}
+
+{% load staticfiles %}
+
+{% block head %}
+    <style type="text/css">
+        body,
+        html {
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            font-size: 62.5%;
+            }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+        <div class="container">
+        <div class="snowbg"></div>
+        <img class="title" src="{% static "img/index_title.png" %}" />
+        <img class="bg" src="{% static "img/index_bg.jpg" %}" />
+        <div class="start_fantuan">
+            <div class="fantuan relative_center">
+                <img src="{% static "img/fantuan_01.png" %}" />
+                <img src="{% static "img/fantuan_02.png" %}" />
+                <img src="{% static "img/fantuan_03.png" %}" />
+                <img src="{% static "img/fantuan_04.png" %}" />
+                <img src="{% static "img/fantuan_05.png" %}" />
+            </div>
+            <img id="start"  class="start relative_center" src="{% static "img/index_start.png" %}"  />
+        </div>
+		</div>
+		<audio autoplay="" loop=""><source src="{% static "img/bg_music.mp3" %}"></audio>
+		<script>
+			$("#start").click(function(){
+				window.location.href="/greeting/g/{{rid}}/";
+			});
+			$(function() {
+				var d = "<div class='snow'>❅<div>"
+				setInterval(function() {
+					var f = $(document).width();
+					var e = Math.random() * f - 50;
+					var o = 0.3 + Math.random();//控制雪花开始时的透明度
+					var fon = 1.3 + Math.random() * 3;
+					var l = e - 100 + 200 * Math.random();
+					var k = 8000 + 5000 * Math.random();//雪花速度
+					$(d).clone().appendTo(".snowbg").css({
+
+						left: e + "px",
+						opacity: 1,
+						"font-size":fon+"rem", //雪花大小
+					}).animate({
+						top: "100%", //雪花距离顶部高度
+						left: l + "px",
+						opacity: 0.1, //雪花透明度
+					}, k, "linear", function() {
+						$(this).remove()
+					})
+				}, 700)
+			})
+		</script>
+
+{% endblock %}

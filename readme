@@ -1,0 +1,35 @@
+
+环境：
+    Ubuntu 14.04
+    Nginx 1.4.6
+    uWSGI 2.0
+    MySQL 5.5
+    Python 3.5
+    
+
+python依赖库在pip.txt文件内，执行如下命令安装所有依赖
+    pip install -r pip.txt
+如没有pip，则sudo apt-get install pip
+
+
+Nginx 和 uWSGI 相关配置文件在 deploy 文件夹内
+    按配置内容修改具体部署机器的相关路径信息
+
+
+django配置文件在vote/settings.py
+    数据库相关配置在 DATABASES 段内
+    微信扫码登陆的回调入口地址为DEFAULT_AUTH_REDIRECT, 该域名必须和对应公众号的后台设置相同
+
+
+以上配置文件内的路径请保证在当前系统下存在，没有则手动创建
+
+
+启动：
+    首先启动nginx
+    然后在deploy文件夹内启动start.sh
+
+
+    首次启动后，请运行下列命令进行数据库初始化操作
+    python manage.py migrate
+
+

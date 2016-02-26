@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+{% load static %}
+<head>
+    <base href="{% get_static_prefix %}" />
+    <title>{% block title %}价格调查局{% endblock %}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="full-screen" content="true">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="360-fullscreen" content="true">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="image/style.css">
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+    {% block head %}
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+    <div style="display:none"> 
+        <img src="image/inquiry.jpg" />
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <div style="display:none"> 
+        <script src="http://s11.cnzz.com/z_stat.php?id=1256921190&web_id=1256921190" language="JavaScript"></script>
+    </div>
+
+</body>
+</html>

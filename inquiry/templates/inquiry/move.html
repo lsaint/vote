@@ -1,0 +1,128 @@
+
+{% extends "inquiry/base.html" %}
+
+{% load staticfiles %}
+
+{% block head %}
+	<meta name="eva" content="muzi lee">
+    <script>
+        function postScore(){
+        var jsonObject={};
+        jsonObject.rid="{{ rid }}";
+        jsonObject.score=$("#gameResult").text();
+        $.ajax({
+        url:'http://gfinquiry.huocc.com/inquiry/savescore/',
+        type:'post',
+        data:JSON.stringify(jsonObject),
+
+        error:function(){
+           alert('error');
+        },
+        success:function(data){
+          console.log("提交分数!");
+        }
+        });
+        }
+        // 分享
+        function share(){
+{#            window.location.href="{% url 'round' rid %}?share=1";#}
+              $("#form1").submit();
+
+        }
+    </script>
+	<script type="text/javascript" src="js/eva.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="music_icon"></div>
+	<audio id="music" loop="loop">
+		<source src="image/bg_music.mp3" type="audio/mpeg">
+	</audio>
+	<div id="all_move" class="all_act">
+		<div id="all_2">
+			<div class="product_box clearfix">
+				<div class="product left">
+					<span class="p1"></span>
+				</div>
+				<div class="product left">
+					<span class="p2"></span>
+				</div>
+				<div class="product left">
+					<span class="p3"></span>
+				</div>
+				<div class="product left">
+					<span class="p4"></span>
+				</div>
+			</div>
+		</div>
+		<div class="move">
+			<div class="game none">
+				<canvas id="game" width="750" height="835">
+				your browser doesn't support canvas!
+				</canvas>
+			</div>
+			<div class="move_text none"><img src="image/move_text.png"></div>
+			<div class="move_text_end none">
+				<p>5秒戳了<span class='number' id="gameResult"></span>下，挤出<span class="per_num"></span>水分！</p>
+				<p><img class="end" src="image/end_1.png"></p>
+			</div>
+			<div class="move_tip none">
+				<img src="image/move_tip.png">
+				<span class="moveOver"><img src="image/button_go.png"></span>
+			</div>
+			<div class="card_text none"><img src="image/card_tip.png"></div>
+			<div class="card_text_end none">
+				<p><img src="image/card_end_text.png"></p>
+			</div>
+			<div class="card_tip none">
+				<img src="image/card_end_tip.png">
+				<span class="pLink"><img src="image/button_go.png"></span>
+			</div>
+		</div>
+{#		<div id="all_3" class="none">#}
+{#			<img src="image/1_star.png" class="prize">#}
+{#			<p class="end_text_1">我10秒戳了<span class='number'></span>下，查出<span class="per_1 per_num"></span>价格水分</p>#}
+{#			<p class="end_text_2"></p>#}
+{#			<div class="end_title">#}
+{#				<p class="end_title_1"><span>广发卡</span>价格调查局颁发称号</p>#}
+{#				<p class="end_title_2"></p>#}
+{#			</div>#}
+{#			<div class="share_btn">#}
+{#				<a href="javascript:void(0)" class="sbtn_1"><img src="image/button_01.png"></a>#}
+{#				<a href="http://gfanniversary.huocc.com" class="sbtn_2"><img src="image/button_04.png"></a>#}
+{#			</div>#}
+{#			<div class="share_text">#}
+{#				<img src="image/share_text1.png">#}
+{#				<img src="image/share_text2.png">#}
+{#			</div>#}
+{#			<div class="link_text"><a href="http://m.cgbfriday.com/card-step1.html"><img src="image/wenzi.png"></a></div>#}
+{#			<div class="bg_black"><img src="image/share_tip.png"></div>#}
+{#		</div>#}
+	</div>
+    <form  id="form1" action="http://gfinquiry.huocc.com/inquiry/r/{{rid}}/" enctype="multipart/form-data" method="post"></form>
+	<script>
+		$(document).ready(function(){
+			// var vh=$(document).height();
+			// $("#all_move").css("height",vh);
+			var a=0;
+			var b=document.getElementById('music');
+			b.play();
+			$(".music_icon").click(function(){
+				if (a%2==0) {
+					$(this).addClass("music_off_icon");
+					b.pause();
+				}else{
+					$(this).removeClass("music_off_icon");
+					b.play();
+				}
+				a++;
+			});
+			$(".sbtn_1").click(function(){
+				$(".bg_black").show();
+			});
+			$(".bg_black").click(function(){
+				$(this).hide();
+			})
+		});
+	</script>
+{% endblock %}
